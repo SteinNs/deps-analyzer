@@ -50,9 +50,14 @@ class DepsAnalyzer {
       } catch (e) {}
       try {
         resolvedFilePath = path.resolve(context, filePath) + extension;
-        fileSystem.statSync(resolvedFilePath);
+        fileSystem.readFileSync(resolvedFilePath);
         break;
       } catch (e) {}
+      try{
+        resolvedFilePath = path.resolve(context, filePath, `index${extension}`);
+        fileSystem.readFileSync(resolvedFilePath);
+        break;
+      }catch (e) {}
     }
     if (this.deps[resolvedFilePath]) {
       return;

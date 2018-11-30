@@ -1,6 +1,6 @@
 {
   "name": "deps-analyzer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "analyse entry module's dependencies with extensions supported",
   "main": "index.js",
   "scripts": {
