@@ -15,7 +15,7 @@
     "dependencies",
     "webpack"
   ],
-  "author": "SteinNs",
+  "author": "leestein",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/SteinNs/deps-analyzer/issues"
