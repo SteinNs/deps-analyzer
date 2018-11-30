@@ -1,0 +1,27 @@
+{
+  "name": "deps-analyzer",
+  "version": "1.0.0",
+  "description": "analyse entry module's dependencies with extensions supported",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SteinNs/deps-analyzer.git"
+  },
+  "keywords": [
+    "analyse",
+    "dependencies",
+    "webpack"
+  ],
+  "author": "SteinNs",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SteinNs/deps-analyzer/issues"
+  },
+  "homepage": "https://github.com/SteinNs/deps-analyzer#readme",
+  "dependencies": {
+    "match-require": "^2.1.0"
+  }
+}
