@@ -1,6 +1,7 @@
 const path = require('path');
 const matchRequire = require('match-require');
 const fs = require('fs');
+const assert = require('assert');
 
 class DepsAnalyzer {
 
@@ -43,26 +44,28 @@ class DepsAnalyzer {
     } = this.options;
     extensions.unshift('');
     let resolvedFilePath;
+    let fileContent = null;
     for (let extension of extensions) {
       try {
         resolvedFilePath = require.resolve(path.resolve(context, filePath));
+        fileContent = fileSystem.readFileSync(resolvedFilePath).toString();
         break;
       } catch (e) {}
       try {
         resolvedFilePath = path.resolve(context, filePath) + extension;
-        fileSystem.readFileSync(resolvedFilePath);
+        fileContent = fileSystem.readFileSync(resolvedFilePath).toString();
         break;
       } catch (e) {}
       try{
         resolvedFilePath = path.resolve(context, filePath, `index${extension}`);
-        fileSystem.readFileSync(resolvedFilePath);
+        fileContent = fileSystem.readFileSync(resolvedFilePath).toString();
         break;
       }catch (e) {}
     }
     if (this.deps[resolvedFilePath]) {
       return;
     }
-    const fileContent = fileSystem.readFileSync(resolvedFilePath).toString();
+    assert(fileContent !== null, `${filePath} can not be resolved`);
     const deps = matchRequire.findAll(fileContent);
     this.deps[resolvedFilePath] = deps
       .filter(mod => !matchRequire.isRelativeModule(mod))
